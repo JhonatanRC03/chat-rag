@@ -45,5 +45,10 @@ class Settings(BaseSettings):
     AZURE_OPENAI_ENDPOINT: str = ""
     AZURE_OPENAI_DEPLOYMENT_NAME: str = ""
     OPENAI_EMBEDDING_MODEL: str = "text-embedding-ada-002"
+    
+    # Azure OpenAI for Chat
+    AZURE_OPENAI_CHAT_API_KEY: str = ""
+    AZURE_OPENAI_CHAT_ENDPOINT: str = ""
+    AZURE_OPENAI_CHAT_DEPLOYMENT_NAME: str = ""
 
 settings = Settings()

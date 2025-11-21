@@ -4,6 +4,7 @@ from fastapi import APIRouter
 from app.api.routes import (
     version,
     documents,
+    chat,
 )
 
 
@@ -21,3 +22,4 @@ api_router = APIRouter()
 
 api_router.include_router(version.router, prefix="/version", tags=["version"])
 api_router.include_router(documents.router, prefix="/documents", tags=["documents"])
+api_router.include_router(chat.router, prefix="/chat", tags=["chat"])

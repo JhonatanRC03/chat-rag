@@ -17,9 +17,7 @@ async def upload_and_process_document(
     file_path: Optional[str] = Form(None, description="Optional: local file path instead of upload"),
     processor: DocumentProcessorService = Depends(get_document_processor)
 ):
-    """
-    🚀 **API ÚNICA COMPLETA** 
-    
+    """    
     Procesa documento completo: Blob Storage + Document Intelligence + Embeddings + AI Search
     """
     try:

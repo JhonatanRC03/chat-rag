@@ -57,7 +57,7 @@ class AzureAISearchHelper:
             if len(text) > 8000:  # Conservative limit
                 text = text[:8000]
             
-            # Initialize Azure OpenAI client
+            # Initialize Azure OpenAI client for embeddings
             client = AzureOpenAI(
                 api_key=settings.AZURE_OPENAI_API_KEY,
                 api_version="2024-02-01",
@@ -319,4 +319,54 @@ class AzureAISearchHelper:
             
         except Exception as e:
             print(f"Error getting suggestions: {e}")
+            return []
+    
+    async def vector_search(
+        self, 
+        query_vector: List[float], 
+        top_k: int = 5
+    ) -> List[Dict[str, Any]]:
+        """
+        Perform vector search using embeddings
+        
+        Args:
+            query_vector: Query vector (embeddings)
+            top_k: Number of results to return
+            
+        Returns:
+            list: List of search results
+        """
+        try:
+            # Create vectorized query
+            vector_query = VectorizedQuery(
+                vector=query_vector,
+                k_nearest_neighbors=top_k,
+                fields="embedding3"
+            )
+            
+            # Perform vector search
+            results = self.search_client.search(
+                search_text="",
+                vector_queries=[vector_query],
+                select=["id", "content", "category", "sourcefile", "sourcepage", "storageUrl"],
+                top=top_k
+            )
+            
+            # Format results
+            documents = []
+            for result in results:
+                documents.append({
+                    "id": result.get("id", ""),
+                    "content": result.get("content", ""),
+                    "category": result.get("category", ""),
+                    "sourcefile": result.get("sourcefile", ""),
+                    "sourcepage": result.get("sourcepage", ""),
+                    "storageUrl": result.get("storageUrl", ""),
+                    "score": result.get("@search.score", 0.0)
+                })
+            
+            return documents
+            
+        except Exception as e:
+            print(f"Error in vector search: {e}")
             return []
