@@ -26,4 +26,24 @@ class Settings(BaseSettings):
     COMPANY_NAME: str = "Your Company"
     COMPANY_ID: str = "your-company-id"
 
+    # Azure Configuration
+    AZURE_STORAGE_ACCOUNT_NAME: str = ""
+    AZURE_STORAGE_ACCOUNT_KEY: str = ""
+    AZURE_STORAGE_CONTAINER_NAME: str = ""
+    
+    # Azure AI Search
+    AZURE_SEARCH_SERVICE: str = ""
+    AZURE_SEARCH_API_KEY: str = ""
+    AZURE_SEARCH_INDEX_NAME: str = ""
+    
+    # Azure Document Intelligence
+    AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT: str = ""
+    AZURE_DOCUMENT_INTELLIGENCE_KEY: str = ""
+    
+    # Azure OpenAI for Embeddings
+    AZURE_OPENAI_API_KEY: str = ""
+    AZURE_OPENAI_ENDPOINT: str = ""
+    AZURE_OPENAI_DEPLOYMENT_NAME: str = ""
+    OPENAI_EMBEDDING_MODEL: str = "text-embedding-ada-002"
+
 settings = Settings()

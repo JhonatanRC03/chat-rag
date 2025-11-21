@@ -3,6 +3,7 @@ import sys
 from fastapi import APIRouter
 from app.api.routes import (
     version,
+    documents,
 )
 
 
@@ -19,3 +20,4 @@ logging.getLogger("azure").setLevel(logging.WARNING)
 api_router = APIRouter()
 
 api_router.include_router(version.router, prefix="/version", tags=["version"])
+api_router.include_router(documents.router, prefix="/documents", tags=["documents"])
