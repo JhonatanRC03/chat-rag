@@ -18,7 +18,7 @@ interface ChatInterfaceProps {
 }
 
 const ChatInterface: React.FC<ChatInterfaceProps> = ({ 
-  apiUrl = 'http://localhost:8083/api/v1/chat' 
+  apiUrl = import.meta.env.VITE_API_URL
 }) => {
   const [messages, setMessages] = useState<Message[]>([
     {
