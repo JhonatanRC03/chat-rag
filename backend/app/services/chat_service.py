@@ -141,13 +141,13 @@ Recuerda: Solo usa la información de los documentos proporcionados en el contex
                 top_p=0.9
             )
             
-            print("Stream iniciado, procesando chunks...")
+            # print("Stream iniciado, procesando chunks...")
             
             # Yield streaming chunks
             chunk_count = 0
             for chunk in stream:
                 chunk_count += 1
-                print(f"Procesando chunk {chunk_count}")
+                # print(f"Procesando chunk {chunk_count}")
                 
                 if not chunk.choices:
                     print(f"Chunk {chunk_count} sin choices")
@@ -167,7 +167,7 @@ Recuerda: Solo usa la información de los documentos proporcionados en el contex
                     continue
                     
                 if delta.content is not None:
-                    print(f"Chunk {chunk_count} enviando contenido: {delta.content[:50]}...")
+                    # print(f"Chunk {chunk_count} enviando contenido: {delta.content[:50]}...")
                     yield delta.content
                 else:
                     print(f"Chunk {chunk_count} content es None")
